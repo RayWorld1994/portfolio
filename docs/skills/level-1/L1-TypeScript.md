@@ -20,8 +20,8 @@ Language-level typing rules for TS/TSX in this repo.
 - Router type registration deep-dives (`L2-TanStack-Router` + TanStack Intent).
 
 ## Usage Examples
-- Env: extend `src/env.ts` with Zod, consume via `import { env } from '#/env'.
 - Props: explicit props types for public components; infer locals.
+- Validate external/runtime input with Zod at boundaries (forms, server fns).
 
 ## Best Practices
 - Never cast to silence errors; fix the type.

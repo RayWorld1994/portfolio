@@ -10,7 +10,6 @@ Repository layout conventions for `src/`, `docs/`, and tooling folders.
 - Keep routes in `src/routes` (file-based TanStack Router).
 - Shared UI in `src/components`.
 - Shared helpers in `src/lib`.
-- Env schema in `src/env.ts`.
 - AI skills knowledge in `docs/skills/{level-1,level-2,level-3}`.
 - Design tokens / ADRs in `docs/design-system` and `docs/decisions`.
 
@@ -28,7 +27,6 @@ src/
   lib/            # cn(), pure helpers
   routes/         # file routes + __root.tsx
   styles.css      # Tailwind + design tokens
-  env.ts
   router.tsx
 docs/
   skills/level-{1,2,3}/

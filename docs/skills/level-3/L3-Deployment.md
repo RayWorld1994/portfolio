@@ -8,7 +8,7 @@ Production build, hosting, and env configuration.
 
 ## Responsibilities
 - `pnpm build` / `npm run build` → Node server under `dist/` (Nitro).
-- Configure host env vars via `src/env.ts`.
+- Configure host env vars via the deployment platform (`process.env` on the server).
 - See TanStack Intent `start-core/deployment` for platform presets.
 
 ## Dependencies

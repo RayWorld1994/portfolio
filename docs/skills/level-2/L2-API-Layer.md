@@ -10,7 +10,7 @@ TanStack Start server fns and route `server.handlers`.
 - Prefer `createServerFn` for app mutations/queries from UI.
 - Use route `server.handlers` for public HTTP endpoints/webhooks.
 - Validate inputs with Zod.
-- Use `src/env.ts` for secrets/config.
+- Read secrets from `process.env` on the server only.
 
 ## Dependencies
 - `L1-TypeScript`

@@ -17,7 +17,6 @@ Vision source: `.doc/The_Network_Portfolio_Blueprint.md`.
 | UI primitives | shadcn/ui (add via `pnpm dlx shadcn@latest add …`) |
 | Lint/format | Biome |
 | Server adapter | Nitro |
-| Env | T3 Env (`src/env.ts`) |
 
 Blueprint mentions of Angular are historical; this repo is React/TanStack.
 See `docs/decisions/ADR-001-tanstack-start.md`.
