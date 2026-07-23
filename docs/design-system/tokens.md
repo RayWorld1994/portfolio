@@ -34,15 +34,12 @@ these values as the Network UI lands.
 - Prefer network morphs over hard section fades
 - Honor `prefers-reduced-motion`
 
-## Typography (target)
+## Typography (live)
 
 | Role | Family |
 | --- | --- |
 | Headings | Space Grotesk |
-| Body | Inter |
-
-Note: the starter currently uses Fraunces + Manrope; replace when implementing
-the Network design system.
+| Body | Plus Jakarta Sans |
 
 ## Language
 

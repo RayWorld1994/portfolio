@@ -10,10 +10,12 @@ import { nitro } from 'nitro/vite'
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
   plugins: [
+    // Devtools must be first (TanStack guidance).
+    // tanstackStart must register the Vite "ssr" environment before nitro.
     devtools(),
-    nitro({ rollupConfig: { external: [/^@sentry\//] } }),
     tailwindcss(),
     tanstackStart(),
+    nitro({ rollupConfig: { external: [/^@sentry\//] } }),
     viteReact(),
   ],
 })
