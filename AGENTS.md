@@ -1,3 +1,33 @@
+# Portfolio agent guidance
+
+## AI skill architecture
+
+Use the modular three-level skill system. Catalog: `docs/skills/README.md`.
+Guide: `.doc/AI_Skill_Architecture_Guide.md`.
+
+### Always load (Level 1)
+
+- `docs/skills/level-1/L1-Core-Principles.md`
+- `docs/skills/level-1/L1-Coding-Standards.md`
+- `docs/skills/level-1/L1-Folder-Structure.md`
+- `docs/skills/level-1/L1-TypeScript.md`
+
+### On demand
+
+1. Load only required Level 2 skills from `docs/skills/level-2/`.
+2. Load only required Level 3 skills from `docs/skills/level-3/`.
+3. Dependency direction: Level 3 → Level 2 → Level 1 (never reverse).
+4. Do not duplicate knowledge; reference skills and vendor docs.
+5. Stack truth: TanStack Start + React — see `docs/decisions/ADR-001-tanstack-start.md`.
+6. Product vision: `.doc/The_Network_Portfolio_Blueprint.md`.
+
+### Related docs
+
+- `docs/architecture/overview.md`
+- `docs/design-system/tokens.md`
+
+---
+
 <!-- intent-skills:start -->
 # TanStack Intent - before editing files, run the matching guidance command.
 tanstackIntent:

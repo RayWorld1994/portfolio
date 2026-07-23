@@ -1,0 +1,31 @@
+---
+description: Portfolio three-level AI skill architecture — always apply Level 1; load L2/L3 on demand
+alwaysApply: true
+---
+
+# Portfolio AI Skills
+
+Follow the modular skill system in `docs/skills/`. Guide:
+`.doc/AI_Skill_Architecture_Guide.md`.
+
+## Always (Level 1)
+
+Before substantive work, treat these as loaded:
+
+- `docs/skills/level-1/L1-Core-Principles.md`
+- `docs/skills/level-1/L1-Coding-Standards.md`
+- `docs/skills/level-1/L1-Folder-Structure.md`
+- `docs/skills/level-1/L1-TypeScript.md`
+
+## On demand
+
+1. Read only the Level 2 skills needed for the task (`docs/skills/level-2/`).
+2. Read only the Level 3 skills needed (`docs/skills/level-3/`).
+3. Do not reverse dependencies (L3 → L2 → L1 only).
+4. Do not duplicate rules already defined in a referenced skill.
+5. For TanStack/React library depth, use `AGENTS.md` Intent commands and
+   `.agents/skills/*` instead of re-teaching APIs.
+
+## Catalog
+
+See `docs/skills/README.md`.
