@@ -20,21 +20,21 @@ export default function Hero() {
 
 			<div className="page-wrap relative flex min-h-[min(100vh,920px)] items-center px-4 pb-20 pt-10">
 				<div className="max-w-xl rise-in">
-					<p className="section-kicker mb-4">The Network</p>
+					<p className="section-kicker mb-4">Software Developer</p>
 					<h1 className="display-title mb-4 text-5xl font-bold leading-[1.02] text-[var(--text)] sm:text-6xl lg:text-7xl">
-						Erick
+						Erick García
 					</h1>
 					<div className="mb-6">
 						<HeroTyping />
 					</div>
 					<p className="mb-8 max-w-md text-base leading-7 text-[var(--text-muted)] sm:text-lg">
-						Every connection, project, and experience shapes who I am. This
-						living network is a map of continuous growth — modern, minimal, and
-						built to explore.
+						Software Developer with 5 years of experience building scalable web
+						applications — from Angular enterprise platforms to React and
+						Node.js full-stack solutions. Based in San Salvador, El Salvador.
 					</p>
 					<div className="flex flex-wrap gap-3">
-						<a href="#projects" className="network-btn">
-							View projects
+						<a href="#experience" className="network-btn">
+							View experience
 						</a>
 						<a href="#contact" className="network-btn network-btn-ghost">
 							Get in touch

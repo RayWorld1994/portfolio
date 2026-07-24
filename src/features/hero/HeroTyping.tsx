@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 
 const PHRASES = [
 	"I am Erick",
-	"I am an Engineer",
-	"I am a Developer",
+	"I am a Software Developer",
+	"I build with React & Angular",
 	"I am a Problem Solver",
-	"I am a Frontend Specialist",
+	"I ship scalable UIs",
 	"I am always learning",
 ] as const;
 

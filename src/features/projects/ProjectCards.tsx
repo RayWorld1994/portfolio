@@ -9,8 +9,8 @@ export default function ProjectCards() {
 					Selected work
 				</h2>
 				<p className="mt-3 text-[var(--text-muted)]">
-					Interactive cards with lift, glow, and motion — placeholders ready to
-					swap for real case studies.
+					Interactive cards with lift, glow, and motion — selected work from
+					enterprise platforms at Applaudo Studios.
 				</p>
 			</div>
 

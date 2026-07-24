@@ -114,11 +114,16 @@ export default function EasterEggs() {
 					</button>
 				</header>
 				<pre>{`$ whoami
-Erick — Frontend Specialist
+Erick Edenilson García Raymundo
+Software Developer · San Salvador, El Salvador
 
-$ cat mission.txt
-Build living systems from connections.
-Every node is a lesson. Every edge is growth.
+$ cat skills.txt
+Angular · React · Next.js · Node.js · TypeScript
+NgRx · RxJS · Module Federation · PostgreSQL
+
+$ cat contact.txt
+erykede@gmail.com
++503 7158 9212
 
 $ hint
 Konami → debug outlines

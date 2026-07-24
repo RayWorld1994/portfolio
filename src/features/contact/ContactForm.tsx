@@ -55,9 +55,21 @@ export default function ContactForm() {
 					Let’s connect a new node
 				</h2>
 				<p className="mt-3 text-[var(--text-muted)]">
-					Share a note about a role, collaboration, or idea. Messages are
-					validated on the server.
+					Open to roles and collaborations. San Salvador, El Salvador · Spanish
+					(native) · English (B2 / C1).
 				</p>
+				<ul className="mt-4 m-0 flex list-none flex-wrap gap-x-5 gap-y-2 p-0 text-sm font-semibold">
+					<li>
+						<a href="mailto:erykede@gmail.com" className="no-underline">
+							erykede@gmail.com
+						</a>
+					</li>
+					<li>
+						<a href="tel:+50371589212" className="no-underline">
+							+503 7158 9212
+						</a>
+					</li>
+				</ul>
 			</div>
 
 			<form

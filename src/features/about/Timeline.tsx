@@ -9,39 +9,39 @@ export type Milestone = {
 
 export const milestones: Milestone[] = [
 	{
+		id: "2013",
+		year: "2013 – 2019",
+		title: "Industrial Engineering",
+		detail:
+			"Universidad Centroamericana José Simeón Cañas (UCA), La Libertad, El Salvador — analytical foundations for systems thinking and delivery.",
+	},
+	{
 		id: "2019",
-		year: "2019",
-		title: "Started Angular",
+		year: "2019 – 2020",
+		title: "Angular Trainee · Applaudo Studios",
 		detail:
-			"Began building structured frontend applications and component systems.",
+			"Built Angular fundamentals — components, modules, services, forms, routing — and collaborated with seniors on reusable components and Git workflows.",
 	},
 	{
-		id: "2020",
-		year: "2020",
-		title: "First Professional Project",
+		id: "2021",
+		year: "2021 – 2026",
+		title: "Frontend Developer · Applaudo Studios",
 		detail:
-			"Shipped production UI and learned how teams turn ideas into releases.",
-	},
-	{
-		id: "2022",
-		year: "2022",
-		title: "Enterprise Applications",
-		detail:
-			"Scaled complex domains, design systems, and long-lived product surfaces.",
+			"Shipped large-scale Angular platforms for NBA basketball operations and sports ticketing admin — Module Federation, NgRx, RxJS, Material, and D3.",
 	},
 	{
 		id: "2024",
-		year: "2024",
-		title: "React + Architecture",
+		year: "Growing stack",
+		title: "React, Next.js & Node.js",
 		detail:
-			"Focused on type-safe routing, composition, and maintainable frontend architecture.",
+			"Expanding production-ready skills across React, Next.js, Redux, TanStack Query, Express, SQL, and PostgreSQL with a focus on clean architecture.",
 	},
 	{
 		id: "future",
-		year: "Future",
-		title: "Cloud Architect",
+		year: "Next",
+		title: "Maintainable full-stack systems",
 		detail:
-			"Expanding toward resilient cloud systems that connect products end to end.",
+			"Continuing to connect frontend craft with backend fundamentals — performance, API design, and cross-functional delivery.",
 	},
 ];
 
@@ -88,8 +88,8 @@ export default function Timeline() {
 					A timeline of connections
 				</h2>
 				<p className="mt-3 text-[var(--text-muted)]">
-					Each milestone lights up as you scroll — nodes in a longer path toward
-					systems thinking and craft.
+					From industrial engineering to enterprise Angular platforms — each
+					milestone is a node in how I build software today.
 				</p>
 			</div>
 

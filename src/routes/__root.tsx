@@ -23,10 +23,10 @@ export const Route = createRootRoute({
 			{
 				name: "description",
 				content:
-					"Erick — Frontend Specialist. An interactive portfolio where every connection forms The Network.",
+					"Erick García — Software Developer with 5 years of experience in Angular, React, Next.js, Node.js, and TypeScript. Based in San Salvador, El Salvador.",
 			},
 			{
-				title: "Erick · The Network",
+				title: "Erick García · Software Developer",
 			},
 		],
 		links: [

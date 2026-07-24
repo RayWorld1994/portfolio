@@ -22,10 +22,10 @@ export default function Header() {
 							event.preventDefault();
 							openTerminalOverlay();
 						}}
-						aria-label="Erick — The Network. Double-click for terminal."
+						aria-label="Erick García — The Network. Double-click for terminal."
 					>
 						<span className="h-2 w-2 rounded-full bg-[var(--accent)] shadow-[0_0_12px_var(--glow)]" />
-						Erick
+						Erick García
 					</Link>
 				</h2>
 

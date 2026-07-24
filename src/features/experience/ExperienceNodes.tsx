@@ -5,6 +5,7 @@ type Experience = {
 	company: string;
 	role: string;
 	period: string;
+	location: string;
 	projects: string[];
 	technologies: string[];
 	achievements: string[];
@@ -12,39 +13,43 @@ type Experience = {
 
 const experiences: Experience[] = [
 	{
-		id: "northwind",
-		company: "Northwind Labs",
-		role: "Frontend Engineer",
-		period: "2022 — Present",
-		projects: ["Edge Board", "Design token pipeline"],
-		technologies: ["Angular", "RxJS", "TypeScript"],
+		id: "applaudo-fe",
+		company: "Applaudo Studios",
+		role: "Frontend Developer",
+		period: "Apr 2021 – Jan 2026",
+		location: "San Salvador, El Salvador",
+		projects: [
+			"NBA basketball operations platform",
+			"Module Federation dashboards",
+			"Sports & entertainment ticketing admin",
+		],
+		technologies: [
+			"Angular",
+			"TypeScript",
+			"NgRx",
+			"RxJS",
+			"Angular Material",
+			"D3",
+			"Module Federation",
+		],
 		achievements: [
-			"Led modular federation rollout across three product teams",
-			"Cut interaction latency on dense tables by refining render paths",
+			"Built features for team analytics, player scouting, game reporting, and front-office workflows",
+			"Improved micro-frontend dashboard performance via lazy-loading and shared UI consolidation",
+			"Hardened shared CRUD modules — HTTP errors, dialog/form edge cases, and security upgrades",
+			"Collaborated with backend, QA, product, and design via Git, Azure DevOps, and CI/CD",
 		],
 	},
 	{
-		id: "harbor",
-		company: "Harbor Digital",
-		role: "UI Developer",
-		period: "2020 — 2022",
-		projects: ["Client portals", "Component library v1"],
-		technologies: ["Angular", "PrimeNG", "Sass"],
+		id: "applaudo-trainee",
+		company: "Applaudo Studios",
+		role: "Angular Trainee",
+		period: "Nov 2019 – Feb 2020",
+		location: "San Salvador, El Salvador",
+		projects: ["Angular fundamentals lab", "Reusable component practice"],
+		technologies: ["Angular", "TypeScript", "Git"],
 		achievements: [
-			"Shipped first professional product to production",
-			"Standardized accessible form patterns across apps",
-		],
-	},
-	{
-		id: "atelier",
-		company: "Atelier Studio",
-		role: "Junior Developer",
-		period: "2019 — 2020",
-		projects: ["Marketing sites", "Internal tools"],
-		technologies: ["JavaScript", "CSS", "Angular"],
-		achievements: [
-			"Built foundational Angular skills on real client work",
-			"Collaborated closely with design on motion and hierarchy",
+			"Practiced components, modules, services, data binding, forms, and routing",
+			"Collaborated with senior developers on maintenance tasks and code review feedback",
 		],
 	},
 ];
@@ -62,7 +67,7 @@ export default function ExperienceNodes() {
 					Companies as nodes
 				</h2>
 				<p className="mt-3 text-[var(--text-muted)]">
-					Select a node to expand projects, technologies, and achievements.
+					Select a role to expand projects, technologies, and achievements.
 				</p>
 			</div>
 
@@ -119,7 +124,7 @@ export default function ExperienceNodes() {
 								{item.company}
 							</h3>
 							<p className="mt-1 text-sm text-[var(--text-muted)]">
-								{item.role} · {item.period}
+								{item.role} · {item.period} · {item.location}
 							</p>
 
 							<div className="mt-6 grid gap-5 sm:grid-cols-3">

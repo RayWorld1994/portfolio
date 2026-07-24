@@ -29,8 +29,8 @@ export default function SkillsGraph() {
 					Knowledge as a graph
 				</h2>
 				<p className="mt-3 text-[var(--text-muted)]">
-					Hover a technology to illuminate connected tools — no progress bars,
-					just relationships.
+					TypeScript at the center — Angular production depth, growing React /
+					Next.js and Node.js edges. Hover a node to see connections.
 				</p>
 			</div>
 
