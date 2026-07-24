@@ -10,6 +10,14 @@ export default function Hero() {
 			className="relative isolate overflow-hidden"
 			aria-label="Introduction"
 		>
+			{/* Full right-half background — edge to edge on the right */}
+			<div className="pointer-events-none absolute inset-y-0 right-0 left-0 -z-10 lg:left-1/2">
+				<Suspense fallback={null}>
+					<HeroNetwork />
+				</Suspense>
+				<div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-[color-mix(in_oklab,var(--bg)_20%,transparent)] to-transparent lg:bg-gradient-to-r lg:from-[var(--bg)] lg:via-[color-mix(in_oklab,var(--bg)_35%,transparent)] lg:to-transparent" />
+			</div>
+
 			<div className="page-wrap grid min-h-[min(100vh,920px)] items-center gap-10 px-4 py-16 lg:grid-cols-2 lg:gap-12 lg:py-10">
 				<div className="relative z-10 max-w-xl rise-in">
 					<p className="section-kicker mb-4">Software Developer</p>
@@ -35,12 +43,6 @@ export default function Hero() {
 				</div>
 
 				<div className="relative isolate h-[min(58vw,360px)] w-full sm:h-[380px] lg:h-[min(70vh,520px)]">
-					<div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">
-						<Suspense fallback={null}>
-							<HeroNetwork />
-						</Suspense>
-						<div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-transparent to-[color-mix(in_oklab,var(--bg)_25%,transparent)] lg:bg-gradient-to-l lg:from-transparent lg:via-transparent lg:to-[color-mix(in_oklab,var(--bg)_40%,transparent)]" />
-					</div>
 					<Suspense fallback={null}>
 						<HeroRubiksCube />
 					</Suspense>
