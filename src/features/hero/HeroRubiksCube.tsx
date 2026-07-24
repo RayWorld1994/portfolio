@@ -6,17 +6,11 @@ const CUBIE_SIZE = 0.88;
 const SPACING = 1;
 const CUBE_SCALE = 0.78;
 const MOVE_MS = 520;
-
-function readThemeColors(): { base: number; highlight: number } {
-	const root = getComputedStyle(document.documentElement);
-	const accent = root.getPropertyValue("--accent").trim() || "#ff5e46";
-	const hover = root.getPropertyValue("--accent-hover").trim() || "#ff8a78";
-
-	return {
-		base: Number.parseInt(accent.replace("#", ""), 16),
-		highlight: Number.parseInt(hover.replace("#", ""), 16),
-	};
-}
+/** Soft coral-rose metal — matches page accent #FF5E46 without overpowering UI */
+const CUBE_COLOR = 0xe85f4c;
+const CUBE_EMISSIVE = 0xff5e46;
+const CUBE_HIGHLIGHT = 0xff8a78;
+const CUBE_FILL = 0xffd4cc;
 
 /** Pixels → radians while dragging */
 const DRAG_SENSITIVITY = 0.014;
@@ -101,11 +95,9 @@ export default function HeroRubiksCube() {
 			"(prefers-reduced-motion: reduce)",
 		).matches;
 
-		const { base: cubeColor, highlight: cubeHighlight } = readThemeColors();
-
 		const scene = new THREE.Scene();
-		const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
-		camera.position.set(4.2, 3.4, 5.6);
+		const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
+		camera.position.set(3.8, 3.2, 5.2);
 		camera.lookAt(0, 0, 0);
 
 		const renderer = new THREE.WebGLRenderer({
@@ -122,21 +114,23 @@ export default function HeroRubiksCube() {
 		scene.add(cubeGroup);
 
 		const material = new THREE.MeshStandardMaterial({
-			color: cubeColor,
-			emissive: cubeColor,
-			emissiveIntensity: 0.14,
-			metalness: 0.22,
-			roughness: 0.4,
+			color: CUBE_COLOR,
+			emissive: CUBE_EMISSIVE,
+			emissiveIntensity: 0.1,
+			metalness: 0.48,
+			roughness: 0.36,
 		});
 
 		const { cubies, geometry } = buildCubies(cubeGroup, material);
 
-		const ambient = new THREE.AmbientLight(0xffffff, 0.5);
-		const keyLight = new THREE.DirectionalLight(cubeHighlight, 1.15);
+		const ambient = new THREE.AmbientLight(0xffffff, 0.58);
+		const keyLight = new THREE.DirectionalLight(CUBE_HIGHLIGHT, 1.2);
 		keyLight.position.set(4, 6, 5);
-		const fillLight = new THREE.DirectionalLight(cubeColor, 0.45);
+		const fillLight = new THREE.DirectionalLight(CUBE_FILL, 0.5);
 		fillLight.position.set(-5, 2, -3);
-		scene.add(ambient, keyLight, fillLight);
+		const rimLight = new THREE.DirectionalLight(CUBE_EMISSIVE, 0.35);
+		rimLight.position.set(0, -3, 4);
+		scene.add(ambient, keyLight, fillLight, rimLight);
 
 		let raf = 0;
 		let running = true;
@@ -325,7 +319,7 @@ export default function HeroRubiksCube() {
 	return (
 		<div
 			ref={containerRef}
-			className="pointer-events-auto absolute top-1/2 right-[6%] z-10 h-[min(52vw,340px)] w-[min(52vw,340px)] -translate-y-1/2 cursor-grab touch-none active:cursor-grabbing sm:right-[8%] sm:h-[min(48vw,380px)] sm:w-[min(48vw,380px)] lg:h-96 lg:w-96"
+			className="pointer-events-auto absolute top-1/2 left-1/2 z-10 h-[min(70%,280px)] w-[min(70%,280px)] -translate-x-1/2 -translate-y-1/2 cursor-grab touch-none active:cursor-grabbing sm:h-[300px] sm:w-[300px] lg:h-[340px] lg:w-[340px]"
 			role="img"
 			aria-label="Animated Rubik's cube — problem solving visualization. Drag to rotate."
 		/>
