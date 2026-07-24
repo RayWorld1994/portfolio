@@ -7,7 +7,7 @@ const HeroRubiksCube = lazy(() => import("./HeroRubiksCube"));
 export default function Hero() {
 	return (
 		<section
-			className="relative isolate overflow-hidden"
+			className="relative isolate min-h-[min(100vh,920px)] overflow-hidden"
 			aria-label="Introduction"
 		>
 			{/* Full right-half background — edge to edge on the right */}
@@ -18,8 +18,9 @@ export default function Hero() {
 				<div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-[color-mix(in_oklab,var(--bg)_20%,transparent)] to-transparent lg:bg-gradient-to-r lg:from-[var(--bg)] lg:via-[color-mix(in_oklab,var(--bg)_35%,transparent)] lg:to-transparent" />
 			</div>
 
-			<div className="page-wrap grid min-h-[min(100vh,920px)] items-center gap-10 px-4 py-16 lg:grid-cols-2 lg:gap-12 lg:py-10">
-				<div className="relative z-10 max-w-xl rise-in">
+			{/* Copy */}
+			<div className="page-wrap relative z-10 flex items-center px-4 py-16 lg:min-h-[min(100vh,920px)] lg:py-10 lg:pr-[min(50%,560px)]">
+				<div className="max-w-xl rise-in">
 					<p className="section-kicker mb-4">Software Developer</p>
 					<h1 className="display-title mb-4 text-5xl font-bold leading-[1.02] text-[var(--text)] sm:text-6xl lg:text-7xl">
 						Erick García
@@ -41,12 +42,13 @@ export default function Hero() {
 						</a>
 					</div>
 				</div>
+			</div>
 
-				<div className="relative isolate h-[min(58vw,360px)] w-full sm:h-[380px] lg:h-[min(70vh,520px)]">
-					<Suspense fallback={null}>
-						<HeroRubiksCube />
-					</Suspense>
-				</div>
+			{/* Cube — centered in the full right 50vw (not just the grid column) */}
+			<div className="relative z-10 flex h-[min(58vw,360px)] w-full items-center justify-center px-4 pb-16 lg:pointer-events-none lg:absolute lg:inset-y-0 lg:left-1/2 lg:h-auto lg:w-1/2 lg:justify-center lg:px-0 lg:pb-0">
+				<Suspense fallback={null}>
+					<HeroRubiksCube />
+				</Suspense>
 			</div>
 		</section>
 	);

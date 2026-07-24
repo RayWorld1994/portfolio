@@ -97,7 +97,7 @@ export default function HeroRubiksCube() {
 
 		const scene = new THREE.Scene();
 		const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
-		camera.position.set(3.8, 3.2, 5.2);
+		camera.position.set(4.2, 4.2, 4.2);
 		camera.lookAt(0, 0, 0);
 
 		const renderer = new THREE.WebGLRenderer({
@@ -107,6 +107,7 @@ export default function HeroRubiksCube() {
 		});
 		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 		renderer.setClearColor(0x000000, 0);
+		renderer.domElement.style.display = "block";
 		container.appendChild(renderer.domElement);
 
 		const cubeGroup = new THREE.Group();
@@ -319,7 +320,7 @@ export default function HeroRubiksCube() {
 	return (
 		<div
 			ref={containerRef}
-			className="pointer-events-auto absolute top-1/2 left-1/2 z-10 h-[min(70%,280px)] w-[min(70%,280px)] -translate-x-1/2 -translate-y-1/2 cursor-grab touch-none active:cursor-grabbing sm:h-[300px] sm:w-[300px] lg:h-[340px] lg:w-[340px]"
+			className="pointer-events-auto relative aspect-square w-full max-w-[min(72vw,400px)] cursor-grab touch-none active:cursor-grabbing lg:max-w-[400px]"
 			role="img"
 			aria-label="Animated Rubik's cube — problem solving visualization. Drag to rotate."
 		/>
