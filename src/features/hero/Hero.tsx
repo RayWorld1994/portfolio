@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import HeroTyping from "./HeroTyping";
 
 const HeroNetwork = lazy(() => import("./HeroNetwork"));
+const HeroRubiksCube = lazy(() => import("./HeroRubiksCube"));
 
 export default function Hero() {
 	return (
@@ -15,6 +16,9 @@ export default function Hero() {
 						<HeroNetwork />
 					</Suspense>
 					<div className="absolute inset-0 bg-gradient-to-r from-[var(--bg)] via-[color-mix(in_oklab,var(--bg)_55%,transparent)] to-transparent lg:from-[var(--bg)] lg:via-[color-mix(in_oklab,var(--bg)_35%,transparent)]" />
+					<Suspense fallback={null}>
+						<HeroRubiksCube />
+					</Suspense>
 				</div>
 			</div>
 

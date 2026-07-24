@@ -70,7 +70,7 @@ function readAccent(): string {
 	return (
 		getComputedStyle(document.documentElement)
 			.getPropertyValue("--network-lit")
-			.trim() || "#38d9c7"
+			.trim() || "#ff5e46"
 	);
 }
 

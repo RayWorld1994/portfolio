@@ -1,16 +1,21 @@
 import { Link } from "@tanstack/react-router";
 import { openTerminalOverlay } from "../features/shell/EasterEggs";
+import { useActiveSection } from "../lib/useActiveSection";
 import ThemeToggle from "./ThemeToggle";
 
-const anchors = [
-	{ href: "/#about", label: "About" },
-	{ href: "/#skills", label: "Skills" },
-	{ href: "/#projects", label: "Projects" },
-	{ href: "/#experience", label: "Experience" },
-	{ href: "/#contact", label: "Contact" },
+const sections = [
+	{ id: "about", label: "About" },
+	{ id: "skills", label: "Skills" },
+	{ id: "projects", label: "Projects" },
+	{ id: "experience", label: "Experience" },
+	{ id: "contact", label: "Contact" },
 ] as const;
 
+const sectionIds = sections.map((section) => section.id);
+
 export default function Header() {
+	const activeId = useActiveSection(sectionIds);
+
 	return (
 		<header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--header-bg)] px-4 backdrop-blur-lg">
 			<nav className="page-wrap flex flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:py-4">
@@ -30,11 +35,20 @@ export default function Header() {
 				</h2>
 
 				<div className="order-3 flex w-full flex-wrap items-center gap-x-4 gap-y-1 pb-1 sm:order-none sm:w-auto sm:flex-nowrap sm:pb-0">
-					{anchors.map((item) => (
-						<a key={item.href} href={item.href} className="nav-link">
-							{item.label}
-						</a>
-					))}
+					{sections.map((section) => {
+						const isActive = activeId === section.id;
+
+						return (
+							<a
+								key={section.id}
+								href={`/#${section.id}`}
+								className={`nav-link${isActive ? " is-active" : ""}`}
+								aria-current={isActive ? "true" : undefined}
+							>
+								{section.label}
+							</a>
+						);
+					})}
 				</div>
 
 				<div className="ml-auto flex items-center gap-1.5 sm:gap-2">
