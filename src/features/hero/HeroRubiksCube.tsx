@@ -7,7 +7,7 @@ const SPACING = 1;
 const CUBE_SCALE = 0.72;
 /** Reference min container size — camera distance scales with resize to keep visual size stable */
 const REF_VIEW_MIN = 260;
-const BASE_CAMERA_DISTANCE = 4.2;
+const BASE_CAMERA_DISTANCE = 3.85;
 const MOVE_MS = 520;
 /** Soft coral-rose metal — matches page accent #FF5E46 without overpowering UI */
 const CUBE_COLOR = 0xe85f4c;
@@ -122,6 +122,8 @@ export default function HeroRubiksCube() {
 		renderer.toneMapping = THREE.ACESFilmicToneMapping;
 		renderer.toneMappingExposure = 1.2;
 		renderer.domElement.style.display = "block";
+		renderer.domElement.style.width = "100%";
+		renderer.domElement.style.height = "100%";
 		container.appendChild(renderer.domElement);
 
 		const cubeGroup = new THREE.Group();
