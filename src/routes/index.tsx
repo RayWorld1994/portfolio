@@ -4,7 +4,7 @@ import ContactForm from "../features/contact/ContactForm";
 import ExperienceNodes from "../features/experience/ExperienceNodes";
 import Hero from "../features/hero/Hero";
 import ProjectCards from "../features/projects/ProjectCards";
-import SkillsGraph from "../features/skills/SkillsGraph";
+import SkillsPanel from "../features/skills/SkillsPanel";
 
 export const Route = createFileRoute("/")({ component: HomePage });
 
@@ -13,7 +13,7 @@ function HomePage() {
 		<main>
 			<Hero />
 			<Timeline />
-			<SkillsGraph />
+			<SkillsPanel />
 			<ProjectCards />
 			<ExperienceNodes />
 			<ContactForm />

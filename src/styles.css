@@ -395,6 +395,202 @@ a:hover {
   opacity: 1;
 }
 
+.skills-section {
+  position: relative;
+  scroll-margin-top: 5rem;
+}
+
+.skills-section__layout {
+  display: flex;
+  width: 100%;
+  max-width: 920px;
+  margin-inline: auto;
+  align-items: stretch;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .skills-section__layout {
+    gap: 1.75rem;
+  }
+}
+
+.skills-section__rail {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  padding-top: 1.5rem;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .skills-section__rail {
+    display: flex;
+  }
+}
+
+.skills-section__rail-line {
+  width: 3px;
+  height: 3.5rem;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.skills-section__rail-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.skills-panel {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  max-width: 52rem;
+  margin-inline: auto;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: 0 18px 40px color-mix(in oklab, var(--glow) 35%, transparent);
+  padding: clamp(1.5rem, 3.5vw, 2.35rem);
+  color: var(--text);
+}
+
+.skills-panel__title {
+  margin: 0 0 0.85rem;
+  text-align: center;
+  font-size: clamp(1.65rem, 3.5vw, 2.15rem);
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.skills-panel__intro {
+  margin: 0 auto 1.35rem;
+  max-width: 38rem;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.skills-panel__scroll {
+  max-height: min(26rem, 62vh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-snap-type: y mandatory;
+  padding-inline: 0.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--accent) 55%, transparent)
+    transparent;
+  mask-image: linear-gradient(
+    180deg,
+    #000 0%,
+    #000 calc(100% - 1.5rem),
+    transparent 100%
+  );
+}
+
+.skills-panel__scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.skills-panel__scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--accent) 50%, var(--line));
+}
+
+.skills-panel__page {
+  scroll-snap-align: start;
+  padding-bottom: 1.25rem;
+}
+
+.skills-panel__page + .skills-panel__page {
+  padding-top: 0.5rem;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.875rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .skills-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .skills-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.1rem;
+  }
+}
+
+.skills-tile {
+  display: flex;
+  min-height: 8.5rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  border-radius: 1rem;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  padding: 1.15rem 0.9rem;
+  text-align: center;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.skills-tile:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--accent) 40%, var(--line));
+  box-shadow: 0 10px 24px color-mix(in oklab, var(--glow) 45%, transparent);
+}
+
+.skills-tile__icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  object-fit: contain;
+}
+
+.skills-tile__icon--mono {
+  padding: 0.35rem;
+  border-radius: 0.4rem;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.skills-tile__label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+@media (min-width: 640px) {
+  .skills-tile__label {
+    font-size: 0.72rem;
+  }
+}
+
 .rise-in {
   animation: rise-in 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
