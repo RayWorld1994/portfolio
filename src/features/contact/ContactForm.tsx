@@ -3,6 +3,11 @@ import { contactSchema, submitContact } from "./contact.functions";
 
 type FieldErrors = Partial<Record<"name" | "email" | "message", string>>;
 
+const contactLinks = [
+	{ href: "mailto:erykede@gmail.com", label: "erykede@gmail.com" },
+	{ href: "tel:+50371589212", label: "+503 7158 9212" },
+] as const;
+
 export default function ContactForm() {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
@@ -48,97 +53,105 @@ export default function ContactForm() {
 	}
 
 	return (
-		<section id="contact" className="page-wrap px-4 py-24 pb-32">
-			<div className="mb-10 max-w-2xl">
-				<p className="section-kicker mb-3">Contact</p>
-				<h2 className="display-title m-0 text-3xl font-bold text-[var(--text)] sm:text-4xl">
-					Let’s connect a new node
-				</h2>
-				<p className="mt-3 text-[var(--text-muted)]">
-					Open to roles and collaborations. San Salvador, El Salvador · Spanish
-					(native) · English (B2 / C1).
-				</p>
-				<ul className="mt-4 m-0 flex list-none flex-wrap gap-x-5 gap-y-2 p-0 text-sm font-semibold">
-					<li>
-						<a href="mailto:erykede@gmail.com" className="no-underline">
-							erykede@gmail.com
-						</a>
-					</li>
-					<li>
-						<a href="tel:+50371589212" className="no-underline">
-							+503 7158 9212
-						</a>
-					</li>
-				</ul>
-			</div>
+		<section id="contact" className="contact-section page-wrap px-4 py-24 pb-32">
+			<div className="contact-section__layout">
+				<div className="contact-section__intro">
+					<p className="section-kicker mb-3">Contact</p>
+					<h2 className="display-title m-0 text-3xl font-bold text-[var(--text)] sm:text-4xl">
+						Let&apos;s connect a new node
+					</h2>
+					<p className="contact-section__copy">
+						Open to roles and collaborations. Based in San Salvador, El
+						Salvador — Spanish (native), English (B2 / C1 reading & writing).
+					</p>
 
-			<form
-				onSubmit={onSubmit}
-				className="max-w-xl rounded-3xl border border-[var(--line)] bg-[var(--surface)] p-6 sm:p-8"
-				style={{
-					boxShadow:
+					<ul className="contact-links">
+						{contactLinks.map((link) => (
+							<li key={link.href}>
+								<a href={link.href} className="contact-links__item">
+									{link.label}
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
+
+				<form
+					onSubmit={onSubmit}
+					className={
 						status === "success"
-							? "0 0 0 1px var(--glow), 0 20px 50px var(--glow)"
-							: undefined,
-				}}
-				noValidate
-			>
-				<div className="grid gap-5">
-					<Field
-						id="name"
-						label="Name"
-						value={name}
-						error={errors.name}
-						onChange={setName}
-						autoComplete="name"
-					/>
-					<Field
-						id="email"
-						label="Email"
-						type="email"
-						value={email}
-						error={errors.email}
-						onChange={setEmail}
-						autoComplete="email"
-					/>
-					<div>
-						<label
-							htmlFor="message"
-							className="mb-2 block text-sm font-semibold text-[var(--text)]"
-						>
-							Message
-						</label>
-						<textarea
-							id="message"
-							name="message"
-							rows={5}
-							value={message}
-							onChange={(event) => setMessage(event.target.value)}
-							aria-invalid={Boolean(errors.message)}
-							aria-describedby={errors.message ? "message-error" : undefined}
-							className="w-full rounded-xl border border-[var(--line)] bg-[var(--bg)] px-3 py-2.5 text-[var(--text)] outline-none ring-[var(--accent)] focus:ring-2"
+							? "contact-form contact-form--success"
+							: "contact-form"
+					}
+					noValidate
+				>
+					<div className="contact-form__fields">
+						<Field
+							id="name"
+							label="Name"
+							value={name}
+							error={errors.name}
+							onChange={setName}
+							autoComplete="name"
+							placeholder="Your name"
 						/>
-						{errors.message ? (
-							<p id="message-error" className="mt-1 text-sm text-red-500">
-								{errors.message}
-							</p>
+						<Field
+							id="email"
+							label="Email"
+							type="email"
+							value={email}
+							error={errors.email}
+							onChange={setEmail}
+							autoComplete="email"
+							placeholder="you@example.com"
+						/>
+						<div className="contact-field">
+							<label htmlFor="message" className="contact-field__label">
+								Message
+							</label>
+							<textarea
+								id="message"
+								name="message"
+								rows={6}
+								value={message}
+								onChange={(event) => setMessage(event.target.value)}
+								aria-invalid={Boolean(errors.message)}
+								aria-describedby={errors.message ? "message-error" : undefined}
+								className="contact-field__input contact-field__textarea"
+								placeholder="Tell me about the role, project, or idea..."
+							/>
+							{errors.message ? (
+								<p id="message-error" className="contact-field__error">
+									{errors.message}
+								</p>
+							) : null}
+						</div>
+					</div>
+
+					<div className="contact-form__actions">
+						<button
+							type="submit"
+							className="network-btn"
+							disabled={status === "submitting"}
+						>
+							{status === "submitting" ? "Sending…" : "Send message"}
+						</button>
+						{statusMessage ? (
+							<output
+								className={
+									status === "error"
+										? "contact-form__status contact-form__status--error"
+										: status === "success"
+											? "contact-form__status contact-form__status--success"
+											: "contact-form__status"
+								}
+							>
+								{statusMessage}
+							</output>
 						) : null}
 					</div>
-				</div>
-
-				<div className="mt-6 flex flex-wrap items-center gap-3">
-					<button
-						type="submit"
-						className="network-btn"
-						disabled={status === "submitting"}
-					>
-						{status === "submitting" ? "Sending…" : "Send message"}
-					</button>
-					<output className="m-0 text-sm text-[var(--text-muted)]">
-						{statusMessage}
-					</output>
-				</div>
-			</form>
+				</form>
+			</div>
 		</section>
 	);
 }
@@ -151,6 +164,7 @@ function Field({
 	error,
 	type = "text",
 	autoComplete,
+	placeholder,
 }: {
 	id: string;
 	label: string;
@@ -159,13 +173,11 @@ function Field({
 	error?: string;
 	type?: string;
 	autoComplete?: string;
+	placeholder?: string;
 }) {
 	return (
-		<div>
-			<label
-				htmlFor={id}
-				className="mb-2 block text-sm font-semibold text-[var(--text)]"
-			>
+		<div className="contact-field">
+			<label htmlFor={id} className="contact-field__label">
 				{label}
 			</label>
 			<input
@@ -174,13 +186,14 @@ function Field({
 				type={type}
 				value={value}
 				autoComplete={autoComplete}
+				placeholder={placeholder}
 				onChange={(event) => onChange(event.target.value)}
 				aria-invalid={Boolean(error)}
 				aria-describedby={error ? `${id}-error` : undefined}
-				className="w-full rounded-xl border border-[var(--line)] bg-[var(--bg)] px-3 py-2.5 text-[var(--text)] outline-none ring-[var(--accent)] focus:ring-2"
+				className="contact-field__input"
 			/>
 			{error ? (
-				<p id={`${id}-error`} className="mt-1 text-sm text-red-500">
+				<p id={`${id}-error`} className="contact-field__error">
 					{error}
 				</p>
 			) : null}
