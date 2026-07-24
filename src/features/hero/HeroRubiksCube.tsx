@@ -66,14 +66,18 @@ function snapCubie(cubie: Cubie) {
 function buildCubies(
 	group: THREE.Group,
 	material: THREE.MeshStandardMaterial,
-): { cubies: Cubie[]; geometry: THREE.BoxGeometry } {
+	edgeMaterial: THREE.LineBasicMaterial,
+): { cubies: Cubie[]; geometry: THREE.BoxGeometry; edgeGeometry: THREE.EdgesGeometry } {
 	const geometry = new THREE.BoxGeometry(CUBIE_SIZE, CUBIE_SIZE, CUBIE_SIZE);
+	const edgeGeometry = new THREE.EdgesGeometry(geometry);
 	const cubies: Cubie[] = [];
 
 	for (let x = -1; x <= 1; x += 1) {
 		for (let y = -1; y <= 1; y += 1) {
 			for (let z = -1; z <= 1; z += 1) {
 				const mesh = new THREE.Mesh(geometry, material);
+				const edges = new THREE.LineSegments(edgeGeometry, edgeMaterial);
+				mesh.add(edges);
 				mesh.position.set(x * SPACING, y * SPACING, z * SPACING);
 				group.add(mesh);
 				cubies.push({ mesh, x, y, z });
@@ -81,7 +85,7 @@ function buildCubies(
 		}
 	}
 
-	return { cubies, geometry };
+	return { cubies, geometry, edgeGeometry };
 }
 
 export default function HeroRubiksCube() {
@@ -107,6 +111,8 @@ export default function HeroRubiksCube() {
 		});
 		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 		renderer.setClearColor(0x000000, 0);
+		renderer.toneMapping = THREE.ACESFilmicToneMapping;
+		renderer.toneMappingExposure = 1.2;
 		renderer.domElement.style.display = "block";
 		container.appendChild(renderer.domElement);
 
@@ -117,21 +123,47 @@ export default function HeroRubiksCube() {
 		const material = new THREE.MeshStandardMaterial({
 			color: CUBE_COLOR,
 			emissive: CUBE_EMISSIVE,
-			emissiveIntensity: 0.1,
-			metalness: 0.48,
-			roughness: 0.36,
+			emissiveIntensity: 0.035,
+			metalness: 0.25,
+			roughness: 0.4,
 		});
 
-		const { cubies, geometry } = buildCubies(cubeGroup, material);
+		const edgeMaterial = new THREE.LineBasicMaterial({
+			color: 0x1f0604,
+			transparent: true,
+			opacity: 0.5,
+		});
 
-		const ambient = new THREE.AmbientLight(0xffffff, 0.58);
-		const keyLight = new THREE.DirectionalLight(CUBE_HIGHLIGHT, 1.2);
-		keyLight.position.set(4, 6, 5);
-		const fillLight = new THREE.DirectionalLight(CUBE_FILL, 0.5);
-		fillLight.position.set(-5, 2, -3);
-		const rimLight = new THREE.DirectionalLight(CUBE_EMISSIVE, 0.35);
-		rimLight.position.set(0, -3, 4);
-		scene.add(ambient, keyLight, fillLight, rimLight);
+		const { cubies, geometry, edgeGeometry } = buildCubies(
+			cubeGroup,
+			material,
+			edgeMaterial,
+		);
+
+		const hemi = new THREE.HemisphereLight(0xfff5f2, 0x1a0604, 0.65);
+		const ambient = new THREE.AmbientLight(0xffffff, 0.25);
+		const keyLight = new THREE.DirectionalLight(0xffffff, 2);
+		keyLight.position.set(5, 9, 7);
+		const fillLight = new THREE.DirectionalLight(CUBE_FILL, 1);
+		fillLight.position.set(-7, 3, 5);
+		const backLight = new THREE.DirectionalLight(CUBE_HIGHLIGHT, 1.15);
+		backLight.position.set(-4, -1, -7);
+		const rimLight = new THREE.DirectionalLight(0xffffff, 0.95);
+		rimLight.position.set(1, -5, 6);
+		const sideLight = new THREE.DirectionalLight(CUBE_EMISSIVE, 0.75);
+		sideLight.position.set(8, 1, -3);
+		const specLight = new THREE.PointLight(0xffffff, 0.85, 24);
+		specLight.position.set(3, 4, 6);
+		scene.add(
+			hemi,
+			ambient,
+			keyLight,
+			fillLight,
+			backLight,
+			rimLight,
+			sideLight,
+			specLight,
+		);
 
 		let raf = 0;
 		let running = true;
@@ -311,7 +343,9 @@ export default function HeroRubiksCube() {
 			observer.disconnect();
 
 			material.dispose();
+			edgeMaterial.dispose();
 			geometry.dispose();
+			edgeGeometry.dispose();
 			renderer.dispose();
 			container.removeChild(renderer.domElement);
 		};
