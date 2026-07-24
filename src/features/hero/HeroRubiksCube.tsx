@@ -4,7 +4,10 @@ import * as THREE from "three";
 
 const CUBIE_SIZE = 0.88;
 const SPACING = 1;
-const CUBE_SCALE = 0.78;
+const CUBE_SCALE = 0.72;
+/** Reference min container size — camera distance scales with resize to keep visual size stable */
+const REF_VIEW_MIN = 260;
+const BASE_CAMERA_DISTANCE = 4.2;
 const MOVE_MS = 520;
 /** Soft coral-rose metal — matches page accent #FF5E46 without overpowering UI */
 const CUBE_COLOR = 0xe85f4c;
@@ -101,8 +104,13 @@ export default function HeroRubiksCube() {
 
 		const scene = new THREE.Scene();
 		const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
-		camera.position.set(4.2, 4.2, 4.2);
 		camera.lookAt(0, 0, 0);
+
+		const setCameraDistance = (minDim: number) => {
+			const distance = BASE_CAMERA_DISTANCE * (minDim / REF_VIEW_MIN);
+			camera.position.set(distance, distance, distance);
+			camera.lookAt(0, 0, 0);
+		};
 
 		const renderer = new THREE.WebGLRenderer({
 			alpha: true,
@@ -183,6 +191,7 @@ export default function HeroRubiksCube() {
 			if (width === 0 || height === 0) return;
 			renderer.setSize(width, height, false);
 			camera.aspect = width / height;
+			setCameraDistance(Math.min(width, height));
 			camera.updateProjectionMatrix();
 		};
 
@@ -310,7 +319,10 @@ export default function HeroRubiksCube() {
 		resize();
 		raf = window.requestAnimationFrame(step);
 
-		const onResize = () => resize();
+		const resizeObserver = new ResizeObserver(() => {
+			resize();
+		});
+		resizeObserver.observe(container);
 
 		const onVisibility = () => {
 			visible = document.visibilityState === "visible";
@@ -328,7 +340,6 @@ export default function HeroRubiksCube() {
 		container.addEventListener("pointermove", onPointerMove);
 		container.addEventListener("pointerup", onPointerUp);
 		container.addEventListener("pointercancel", onPointerUp);
-		window.addEventListener("resize", onResize);
 		document.addEventListener("visibilitychange", onVisibility);
 
 		return () => {
@@ -338,7 +349,7 @@ export default function HeroRubiksCube() {
 			container.removeEventListener("pointermove", onPointerMove);
 			container.removeEventListener("pointerup", onPointerUp);
 			container.removeEventListener("pointercancel", onPointerUp);
-			window.removeEventListener("resize", onResize);
+			resizeObserver.disconnect();
 			document.removeEventListener("visibilitychange", onVisibility);
 			observer.disconnect();
 
@@ -354,7 +365,7 @@ export default function HeroRubiksCube() {
 	return (
 		<div
 			ref={containerRef}
-			className="pointer-events-auto relative aspect-square w-full max-w-[min(72vw,400px)] cursor-grab touch-none active:cursor-grabbing lg:max-w-[400px]"
+			className="hero-cube pointer-events-auto cursor-grab touch-none active:cursor-grabbing"
 			role="img"
 			aria-label="Animated Rubik's cube — problem solving visualization. Drag to rotate."
 		/>

@@ -238,6 +238,104 @@ a:hover {
   margin-inline: auto;
 }
 
+.hero-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: min(100vh, 920px);
+}
+
+.hero-section__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .hero-section__bg {
+    left: 42%;
+  }
+}
+
+.hero-section__bg-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--bg) 12%, transparent) 0%,
+    color-mix(in oklab, var(--bg) 55%, transparent) 72%,
+    var(--bg) 100%
+  );
+}
+
+@media (min-width: 1024px) {
+  .hero-section__bg-fade {
+    background: linear-gradient(
+      90deg,
+      var(--bg) 0%,
+      color-mix(in oklab, var(--bg) 72%, transparent) 28%,
+      color-mix(in oklab, var(--bg) 18%, transparent) 100%
+    );
+  }
+}
+
+.hero-section__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-items: center;
+  gap: 2rem;
+  min-height: min(100vh, 920px);
+  padding-block: clamp(3.5rem, 8vh, 5rem) clamp(2.5rem, 6vh, 4rem);
+}
+
+@media (min-width: 1024px) {
+  .hero-section__grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    padding-block: clamp(2.5rem, 6vh, 4rem);
+  }
+}
+
+.hero-section__copy {
+  max-width: 36rem;
+}
+
+.hero-section__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 0;
+  pointer-events: none;
+}
+
+.hero-section__visual > * {
+  pointer-events: auto;
+}
+
+.hero-cube {
+  position: relative;
+  width: clamp(188px, 48vw, 248px);
+  height: clamp(188px, 48vw, 248px);
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .hero-cube {
+    width: clamp(210px, 34vw, 268px);
+    height: clamp(210px, 34vw, 268px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-cube {
+    width: clamp(228px, 22vw, 292px);
+    height: clamp(228px, 22vw, 292px);
+  }
+}
+
 .display-title {
   font-family: var(--font-display);
   letter-spacing: -0.03em;
@@ -786,18 +884,12 @@ a:hover {
   .contact-section__layout {
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
     gap: 3rem;
+    align-items: start;
   }
 }
 
 .contact-section__intro {
   max-width: 32rem;
-}
-
-@media (min-width: 900px) {
-  .contact-section__intro {
-    position: sticky;
-    top: 6rem;
-  }
 }
 
 .contact-section__copy {

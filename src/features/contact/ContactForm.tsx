@@ -53,7 +53,7 @@ export default function ContactForm() {
 	}
 
 	return (
-		<section id="contact" className="contact-section page-wrap px-4 py-24 pb-32">
+		<section id="contact" className="contact-section page-wrap px-4 py-24 pb-20">
 			<div className="contact-section__layout">
 				<div className="contact-section__intro">
 					<p className="section-kicker mb-3">Contact</p>
